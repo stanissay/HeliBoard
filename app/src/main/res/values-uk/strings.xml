@@ -5,6 +5,8 @@
     SPDX-License-Identifier: Apache-2.0 AND GPL-3.0-only
 --><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" xmlns:tools="http://schemas.android.com/tools">
     <string name="use_contacts_dict">"Шукати імена контактів"</string>
+    <string name="toolbar_swipe_down_to_hide">Приховати свайпом</string>
+    <string name="toolbar_swipe_down_to_hide_summary">Проведіть вниз від панелі інструментів, щоб сховати клавіатуру</string>
     <string name="vibrate_on_keypress">Вібрація при натисканні клавіш</string>
     <string name="sound_on_keypress">Звук при натиску клавіш</string>
     <string name="popup_on_keypress">"Збільшення натиснутих"</string>
