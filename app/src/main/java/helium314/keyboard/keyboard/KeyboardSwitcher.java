@@ -69,6 +69,7 @@ public final class KeyboardSwitcher {
     private KeyboardWrapperView mKeyboardViewWrapper;
     private View mMainKeyboardFrame;
     private MainKeyboardView mKeyboardView;
+    private WearKeyboardView mWearKeyboardView;
     private EmojiPalettesView mEmojiPalettesView;
     private View mEmojiTabStripView;
     private LinearLayout mClipboardStripView;
@@ -562,6 +563,10 @@ public final class KeyboardSwitcher {
         mKeyboardView = mCurrentInputView.findViewById(R.id.keyboard_view);
         mKeyboardView.setHardwareAcceleratedDrawingEnabled(isHardwareAcceleratedDrawingEnabled);
         mKeyboardView.setKeyboardActionListener(mLatinIME.mKeyboardActionListener);
+        if (isWearDevice(displayContext)) {
+            mWearKeyboardView = new WearKeyboardView(displayContext, null);
+            mKeyboardViewWrapper.addView(mWearKeyboardView);
+        }
         mEmojiPalettesView.setHardwareAcceleratedDrawingEnabled(isHardwareAcceleratedDrawingEnabled);
         mEmojiPalettesView.setKeyboardActionListener(mLatinIME.mKeyboardActionListener);
         mClipboardHistoryView.setHardwareAcceleratedDrawingEnabled(isHardwareAcceleratedDrawingEnabled);
@@ -577,6 +582,12 @@ public final class KeyboardSwitcher {
         prefs.registerOnSharedPreferenceChangeListener(mClipboardHistoryView);
         PointerTracker.switchTo(mKeyboardView);
         return mCurrentInputView;
+    }
+
+    private static boolean isWearDevice(@NonNull Context context) {
+        return (context.getResources().getConfiguration().uiMode
+            & Configuration.UI_MODE_TYPE_MASK)
+            == Configuration.UI_MODE_TYPE_WATCH;
     }
 
     public CapsMode getKeyboardCapsMode() {
